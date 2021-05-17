@@ -11,9 +11,6 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
-
-
-
 client.connect(err => {
     const movie = client.db("movie").collection("movie");
     app.get('/movie/:category', (req, res) => {
@@ -23,8 +20,8 @@ client.connect(err => {
             })
     })
 });
-
-
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+app.get('/', (req, res) => {
+    res.send('work')
 })
+
+app.listen(port)
