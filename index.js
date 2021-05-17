@@ -1,9 +1,10 @@
 const express = require('express')
 const port = 3000
+require('dotenv').config()
 const cors = require('cors')
 const bodyParser = require('body-parser')
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://shihabmilky:shihab@cluster0.4czm1.mongodb.net/movie?retryWrites=true&w=majority";
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.PASS}@cluster0.4czm1.mongodb.net/${process.env.NAME}?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const app = express()
@@ -24,4 +25,4 @@ app.get('/', (req, res) => {
     res.send('work')
 })
 
-app.listen(port)
+app.listen(process.env.PORT || port)
